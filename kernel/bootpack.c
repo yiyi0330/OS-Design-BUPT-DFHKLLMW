@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////
 // HELO OS BY:STON 2020
 // COPYRIGHT (C) 2019-2020 STON
-// ºÎÀÖÔ´ÂëÆìÏÂ
+// ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // STON/PENGZZEKAI/HELO
 // 
 // =================================
@@ -39,7 +39,7 @@
 #define SCHED_TEST_CPU_BOUND_NO_AGING 4
 
 #ifndef SCHED_TEST_PROFILE
-#define SCHED_TEST_PROFILE SCHED_TEST_CPU_BOUND_NO_AGING
+#define SCHED_TEST_PROFILE SCHED_TEST_AGING
 #endif
 
 #if SCHED_TEST_PROFILE == SCHED_TEST_CPU_BOUND
@@ -100,10 +100,10 @@ void close_constask(struct TASK *task);
 #define SYNC_RW_WRITER_TASKS 2
 
 /*
- * ÄÚºËÐÅºÅÁ¿ÊµÏÖ£¨½Ì???/ÊµÑéÓÃÍ¾£©
- * value      : ??ÓÃ×ÊÔ´???Êý
- * wait_count : µ±Ç°×è???ÔÚ¸ÃÐÅºÅÁ¿ÉÏµÄÈÎÎñÊýÁ¿
- * waiters    : ¼òµ¥FIFOµÈ´ý¶ÓÁÐ£¨²»×öÓÅÏÈ¼¶ÖØÅÅ??
+ * ï¿½Úºï¿½ï¿½Åºï¿½ï¿½ï¿½Êµï¿½Ö£ï¿½ï¿½ï¿½???/Êµï¿½ï¿½ï¿½ï¿½Í¾ï¿½ï¿½
+ * value      : ??ï¿½ï¿½ï¿½ï¿½Ô´???ï¿½ï¿½
+ * wait_count : ï¿½ï¿½Ç°ï¿½ï¿½???ï¿½Ú¸ï¿½ï¿½Åºï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * waiters    : ï¿½ï¿½FIFOï¿½È´ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½??
  */
 struct KSEMAPHORE
 {
@@ -113,20 +113,20 @@ struct KSEMAPHORE
 };
 
 /*
- * Èý°ÑÐÅºÅÁ¿£º
- * 1) g_sem_counter_lock ±£»¤¡°°²È«???ÊýÆ÷¡±¹²??±äÁ¿
- * 2) g_sem_rw_count      ±£»¤¶ÁÕß???Êý g_rw_read_count
- * 3) g_sem_rw_resource   ±£»¤¶ÁÐ´¹²Ïí×ÊÔ´£¨Ð´»¥³â¡¢??????Õß¼ÓËø£©
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½
+ * 1) g_sem_counter_lock ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«???ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½
+ * 2) g_sem_rw_count      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ g_rw_read_count
+ * 3) g_sem_rw_resource   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ð´ï¿½ï¿½ï¿½â¡¢??????ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 static struct KSEMAPHORE g_sem_counter_lock;
 static struct KSEMAPHORE g_sem_rw_count;
 static struct KSEMAPHORE g_sem_rw_resource;
 
 /*
- * ¼à???´°¿ÚÍ³¼Æ±äÁ¿£¨volatileÓÃÓÚÌáÊ¾±àÒëÆ÷ÕâÐ©Öµ»á??²¢·¢ÈÎÎñÒì???ÐÞ¸Ä£©
- * g_race_unsafe_* : ÎÞËø¾ºÕù??
- * g_race_safe_*   : ÐÅºÅÁ¿±£»¤×é
- * g_rw_*          : ¶Á??-Ð´Õß×é
+ * ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½Í³ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½volatileï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©Öµï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½???ï¿½Þ¸Ä£ï¿½
+ * g_race_unsafe_* : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??
+ * g_race_safe_*   : ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * g_rw_*          : ï¿½ï¿½??-Ð´ï¿½ï¿½ï¿½ï¿½
  */
 static volatile int g_syncdemo_started = 0;
 static volatile int g_race_unsafe_value = 0;
@@ -141,7 +141,7 @@ static volatile int g_rw_read_ops = 0;
 static volatile int g_rw_write_ops = 0;
 static volatile int g_rw_violation_count = 0;
 
-/* ³õ???»¯ÐÅºÅÁ¿???ÊýÓëµÈ´ý¶ÓÁÐ³¤?? */
+/* ï¿½ï¿½???ï¿½ï¿½ï¿½Åºï¿½ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Ð³ï¿½?? */
 static void ksem_init(struct KSEMAPHORE *sem, int initial)
 {
 	sem->value = initial;
@@ -149,9 +149,9 @@ static void ksem_init(struct KSEMAPHORE *sem, int initial)
 }
 
 /*
- * P²Ù×÷£¨wait/down£©£º
- * - ÓÐ×ÊÔ´£ºvalue-- ºóÁ¢¼´·µ??
- * - ÎÞ×ÊÔ´£º°Ñµ±Ç°ÈÎÎñ¼ÓÈëµÈ´ý¶ÓÁÐ²¢Ë¯Ãß
+ * Pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wait/downï¿½ï¿½ï¿½ï¿½
+ * - ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½value-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??
+ * - ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½Ñµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Ð²ï¿½Ë¯ï¿½ï¿½
  */
 static void ksem_wait(struct KSEMAPHORE *sem)
 {
@@ -169,7 +169,7 @@ static void ksem_wait(struct KSEMAPHORE *sem)
 		}
 		if (sem->wait_count < SYNC_WAITQ_MAX)
 		{
-			/* ¼ÇÂ¼×è???ÈÎÎñ£¬ºóÐøÓÉsignal»½ÐÑ */
+			/* ï¿½ï¿½Â¼ï¿½ï¿½???ï¿½ï¿½ï¿½ñ£¬ºï¿½ï¿½ï¿½ï¿½ï¿½signalï¿½ï¿½ï¿½ï¿½ */
 			sem->waiters[sem->wait_count] = task;
 			sem->wait_count++;
 			task_sleep(task);
@@ -177,7 +177,7 @@ static void ksem_wait(struct KSEMAPHORE *sem)
 		}
 		else
 		{
-			/* ¶ÓÁÐÂúÊ±??ÔÝÃ¦µÈ£¬±ÜÃâÊý×éÔ½½ç */
+			/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±??ï¿½ï¿½Ã¦ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ */
 			io_sti();
 			for (i = 0; i < 1000; i++)
 			{
@@ -187,9 +187,9 @@ static void ksem_wait(struct KSEMAPHORE *sem)
 }
 
 /*
- * V²Ù×÷£¨signal/up£©£º
- * - value++ ¹é»¹×ÊÔ´
- * - ÈôÓÐµÈ´ýÕß£¬°´FIFOÈ¡³öÒ»??»½ÐÑ
+ * Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½signal/upï¿½ï¿½ï¿½ï¿½
+ * - value++ ï¿½é»¹ï¿½ï¿½Ô´
+ * - ï¿½ï¿½ï¿½ÐµÈ´ï¿½ï¿½ß£ï¿½ï¿½ï¿½FIFOÈ¡ï¿½ï¿½Ò»??ï¿½ï¿½ï¿½ï¿½
  */
 static void ksem_signal(struct KSEMAPHORE *sem)
 {
@@ -201,7 +201,7 @@ static void ksem_signal(struct KSEMAPHORE *sem)
 	if (sem->wait_count > 0)
 	{
 		wake = sem->waiters[0];
-		/* Î¬»¤¼òµ¥FIFO¶ÓÁÐ */
+		/* Î¬ï¿½ï¿½ï¿½ï¿½FIFOï¿½ï¿½ï¿½ï¿½ */
 		for (i = 1; i < sem->wait_count; i++)
 		{
 			sem->waiters[i - 1] = sem->waiters[i];
@@ -212,7 +212,7 @@ static void ksem_signal(struct KSEMAPHORE *sem)
 
 	if (wake != 0)
 	{
-		/* ÔÚÔ­²ã¼¶»Ö???ÔËÐÐ£¬priorityÓÉµ÷¶ÈÆ÷Î¬³Ö */
+		/* ï¿½ï¿½Ô­ï¿½ã¼¶ï¿½ï¿½???ï¿½ï¿½ï¿½Ð£ï¿½priorityï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½ */
 		task_run(wake, -1, 0);
 	}
 }
@@ -275,7 +275,7 @@ int user_pc_consume(void)
 	return val;
 }
 
-/* ??¼ÆËãÑÓÊ±£ºÓÃÓÚ·Å´ó¾ºÕù´°¿Ú£¬±ãÓÚ¹Û²ìÊµÑéÏÖÏó */
+/* ??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ú·Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ú¹Û²ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 static void sync_delay(int loops)
 {
 	int i;
@@ -285,8 +285,8 @@ static void sync_delay(int loops)
 }
 
 /*
- * ÎÞËø¾ºÕùÈÎÎñ£º¹ÊÒâÖ´ÐÐ¡°???-??-Ð´¡±·ÇÔ­×ÓÐòÁÐ
- * ¶àÈÎÎñ²¢·¢Ê±»á³ö?? lost update£¨attempts > value??
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ£º¹ï¿½ï¿½ï¿½Ö´ï¿½Ð¡ï¿½???-??-Ð´ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ñ²¢·ï¿½Ê±ï¿½ï¿½ï¿½?? lost updateï¿½ï¿½attempts > value??
  */
 static void task_race_unsafe(void)
 {
@@ -301,8 +301,8 @@ static void task_race_unsafe(void)
 }
 
 /*
- * ¼ÓËø¾ºÕùÈÎÎñ£ºÍ¬ÑùµÄ¶Á¸ÄÐ´£¬µ«ÓÉ¶þÖµÐÅºÅÁ¿±£»¤ÁÙ½ç??
- * ÆÚÍûÏÖÏó£ºattempts ?? value »ù±¾Ò»ÖÂ£¬lost½Ó½ü0
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½Öµï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù½ï¿½??
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½attempts ?? value ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Â£ï¿½lostï¿½Ó½ï¿½0
  */
 static void task_race_safe(void)
 {
@@ -319,37 +319,37 @@ static void task_race_safe(void)
 }
 
 /*
- * ¶ÁÕßÈÎÎñ£¨¶ÁÕßÓÅÏÈ·½°¸£©??
- * - Ê×¸ö¶ÁÕß»ñ?? resource Ëø£¬×è???Ð´Õß½ø??
- * - ????¶ÁÕßÊÍ?? resource ??
- * - ¶à???Õß¿É²¢·¢??
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ£¨¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½??
+ * - ï¿½×¸ï¿½ï¿½ï¿½ï¿½ß»ï¿½?? resource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½???Ð´ï¿½ß½ï¿½??
+ * - ????ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?? resource ??
+ * - ï¿½ï¿½???ï¿½ß¿É²ï¿½ï¿½ï¿½??
  */
 static void task_rw_reader(void)
 {
 	for (;;)
 	{
-		/* ½øÈëÇø£º±£»¤¶ÁÕß???Êý */
+		/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ */
 		ksem_wait(&g_sem_rw_count);
 		g_rw_read_count++;
 		if (g_rw_read_count == 1)
 		{
-			/* Ê×???ÕßËø×ÊÔ´£¬×èÖ¹Ð´?? */
+			/* ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Ö¹Ð´?? */
 			ksem_wait(&g_sem_rw_resource);
 		}
 		ksem_signal(&g_sem_rw_count);
 
-		/* ¶Á²Ù×÷Çø */
+		/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		g_rw_active_readers++;
 		if (g_rw_active_writers > 0)
 		{
-			/* Èô³öÏÖ¡°???Ð´Í¬Ê±»îÔ¾¡±£¬¼Æ×÷Ð­???Î¥??? */
+			/* ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½???Ð´Í¬Ê±ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð­???Î¥??? */
 			g_rw_violation_count++;
 		}
 		g_rw_read_ops++;
 		sync_delay(14000);
 		g_rw_active_readers--;
 
-		/* Àë¿ªÇø£º??¶ÁÕßÊÍ·Å×ÊÔ´Ëø */
+		/* ï¿½ë¿ªï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ */
 		ksem_wait(&g_sem_rw_count);
 		g_rw_read_count--;
 		if (g_rw_read_count == 0)
@@ -362,7 +362,7 @@ static void task_rw_reader(void)
 }
 
 /*
- * Ð´ÕßÈÎÎñ£º??Õ¼resourceËø£¬Ð´ÆÚ¼ä²»ÔÊ????????/ÆäËûÐ´Õß½ø??
+ * Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??Õ¼resourceï¿½ï¿½ï¿½ï¿½Ð´ï¿½Ú¼ä²»ï¿½ï¿½????????/ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ß½ï¿½??
  */
 static void task_rw_writer(void)
 {
@@ -372,7 +372,7 @@ static void task_rw_writer(void)
 		g_rw_active_writers++;
 		if (g_rw_active_readers > 0)
 		{
-			/* Àí???ÉÏ²»Ó¦·¢Éú£¬·¢ÉúÔòËµÃ÷Ð­???ÊµÏÖÓÐÎÊ?? */
+			/* ï¿½ï¿½???ï¿½Ï²ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½Ð­???Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?? */
 			g_rw_violation_count++;
 		}
 		g_rw_shared_value++;
@@ -385,8 +385,8 @@ static void task_rw_writer(void)
 }
 
 /*
- * Í¨ÓÃÄÚºË¹¤×÷ÈÎÎñ´´½¨????
- * ¸ù¾Ý´«ÈëÈë¿Úº¯Êý´´½¨¡°ÎÞ´°¿ÚÄÚºËÈÎÎñ¡±£¬²¢ÔËÐÐµ½Ö¸¶¨²ã¼¶
+ * Í¨ï¿½ï¿½ï¿½ÚºË¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ´´½ï¿½????
+ * ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ñ¡±£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Ö¸ï¿½ï¿½ï¿½ã¼¶
  */
 static void start_kernel_worker(void (*entry)(void), int level)
 {
@@ -409,8 +409,8 @@ static void start_kernel_worker(void (*entry)(void), int level)
 }
 
 /*
- * ??³õ???»¯Ò»´ÎÑÝÊ¾ÈÎÎñ¼¯??
- * °üº¬ÎÞËø¾ºÕù×é¡¢¼ÓËø¾ºÕù×é¡¢???Õß×é¡¢Ð´Õß×é
+ * ??ï¿½ï¿½???ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½??
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¡¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¡¢???ï¿½ï¿½ï¿½é¡¢Ð´ï¿½ï¿½ï¿½ï¿½
  */
 void syncdemo_start_once(void)
 {
@@ -439,7 +439,7 @@ void syncdemo_start_once(void)
 	ksem_init(&g_sem_rw_resource, 1);
 	user_sync_init();
 
-	/* ??¶¯¾ºÕùÌõ¼þÑÝÊ¾ÈÎ?? */
+	/* ??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½?? */
 	for (i = 0; i < SYNC_RACE_UNSAFE_TASKS; i++)
 	{
 		start_kernel_worker(task_race_unsafe, 3);
@@ -459,8 +459,8 @@ void syncdemo_start_once(void)
 }
 
 /*
- * Í¬???ÊµÑé¼àÊÓ´°¿ÚË¢ÐÂ£º
- * Ã¿???Ë¢ÐÂÕ¹Ê¾Èý×éÊµÑéÍ³¼Æ£¬ÓÃÓÚ¡°¶¨ÆÚ???²â¡±ÊµÑéÏÖ??
+ * Í¬???Êµï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½Ë¢ï¿½Â£ï¿½
+ * Ã¿???Ë¢ï¿½ï¿½Õ¹Ê¾ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½Í³ï¿½Æ£ï¿½ï¿½ï¿½ï¿½Ú¡ï¿½ï¿½ï¿½ï¿½ï¿½???ï¿½â¡±Êµï¿½ï¿½ï¿½ï¿½??
  */
 static void sync_mon_refresh(struct SHEET *sht)
 {
@@ -511,9 +511,9 @@ static void sync_mon_refresh(struct SHEET *sht)
 }
 
 /*
- * ¼à???´°¿ÚÈÎÎñÖ÷??????
- * - ÊÕµ½¶¨Ê±Æ÷ÊÂ??(1)ÔòË¢??
- * - ÊÕµ½¹Ø±ÕÊÂ¼þ(4)Ôò???ÇóÖ÷Ñ­??»ØÊÕ´°¿ÚÓëÈÎ??
+ * ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??????
+ * - ï¿½Õµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½??(1)ï¿½ï¿½Ë¢??
+ * - ï¿½Õµï¿½ï¿½Ø±ï¿½ï¿½Â¼ï¿½(4)ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½Ñ­??ï¿½ï¿½ï¿½Õ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??
  */
 void task_syncmon(struct SHEET *sht)
 {
@@ -542,13 +542,13 @@ void task_syncmon(struct SHEET *sht)
 			io_sti();
 			if (i == 1)
 			{
-				/* ÖÜÆÚË¢ÐÂÍ³???ÐÅ?? */
+				/* ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½Í³???ï¿½ï¿½?? */
 				sync_mon_refresh(sht);
 				timer_settime(timer, 50);
 			}
 			else if (i == 4)
 			{
-				/* Óëconsole/task monitor¸´ÓÃÍ¬Ò»¹Ø±ÕÏûÏ¢Í¨µÀ */
+				/* ï¿½ï¿½console/task monitorï¿½ï¿½ï¿½ï¿½Í¬Ò»ï¿½Ø±ï¿½ï¿½ï¿½Ï¢Í¨ï¿½ï¿½ */
 				timer_cancel(timer);
 				io_cli();
 				fifo32_put(sys_fifo, sht - shtctl->sheets0 + 2024);
@@ -706,7 +706,7 @@ void _main()
 	unsigned char *buf_back, buf_mouse[256];
 	struct SHEET *sht_back, *sht_mouse;
 	struct TASK *task_a, *task;
-	//ÈÕÎÄ¼üÅÌÓ³Éä
+	//ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ó³ï¿½ï¿½
 	/*static char keytable0[0x80] = {
 		0,   0,   '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '^', 0x08, 0,
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '@', '[', 0x0a, 0, 'A', 'S',
@@ -727,7 +727,7 @@ void _main()
 		0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   '_', 0,   0,   0,   0,   0,   0,   0,   0,   0,   '|', 0,   0
 	};*/
-	//ÖÐÎÄ¼üÅÌÓ³Éä
+	//ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ó³ï¿½ï¿½
 	static char keytable0[0x80] = {
 		0,   0,   '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 0x08,   0,
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', 0x0a,   0,   'A', 'S',
@@ -790,7 +790,7 @@ void _main()
 	/* sht_back */
 	sht_back  = sheet_alloc(shtctl);
 	buf_back  = (unsigned char *) memman_alloc_4k(memman, binfo->scrnx * binfo->scrny);
-	sheet_setbuf(sht_back, buf_back, binfo->scrnx, binfo->scrny, -1); /* “§–¾F‚È‚µ */
+	sheet_setbuf(sht_back, buf_back, binfo->scrnx, binfo->scrny, -1); /* ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½È‚ï¿½ */
 	init_screen8(buf_back, binfo->scrnx, binfo->scrny);
 
 	/* sht_cons */
@@ -800,7 +800,7 @@ void _main()
 	sht_mouse = sheet_alloc(shtctl);
 	sheet_setbuf(sht_mouse, buf_mouse, 16, 16, 99);
 	init_mouse_cursor8(buf_mouse, 99);
-	mx = (binfo->scrnx - 16) / 2; /* ‰æ–Ê’†‰›‚É‚È‚é‚æ‚¤‚ÉÀ•WŒvŽZ */
+	mx = (binfo->scrnx - 16) / 2; /* ï¿½ï¿½Ê’ï¿½ï¿½ï¿½ï¿½É‚È‚ï¿½æ‚¤ï¿½Éï¿½ï¿½Wï¿½vï¿½Z */
 	my = (binfo->scrny - 28 - 16) / 2;
 
 	sheet_slide(sht_back,  0,  0);
@@ -826,10 +826,10 @@ void _main()
 		file_loadfile(finfo->clustno, finfo->size, nihongo, fat, (char *) (ADR_DISKIMG + 0x003e00));
 	} else {
 		for (i = 0; i < 16 * 256; i++) {
-			nihongo[i] = hankaku[i]; /* ƒtƒHƒ“ƒg‚ª‚È‚©‚Á‚½‚Ì‚Å”¼Šp•”•ª‚ðƒRƒs[ */
+			nihongo[i] = hankaku[i]; /* ï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å”ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½sï¿½[ */
 		}
 		for (i = 16 * 256; i < 16 * 256 + 32 * 94 * 47; i++) {
-			nihongo[i] = 0xff; /* ƒtƒHƒ“ƒg‚ª‚È‚©‚Á‚½‚Ì‚Å‘SŠp•”•ª‚ð0xff‚Å–„‚ßs‚­‚· */
+			nihongo[i] = 0xff; /* ï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‘Sï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0xffï¿½Å–ï¿½ï¿½ßsï¿½ï¿½ï¿½ï¿½ */
 		}
 	}
 
@@ -884,14 +884,14 @@ void _main()
 	for (;;)
 	{
 		if (fifo32_status(&keycmd) > 0 && keycmd_wait < 0) {
-			/* ƒL[ƒ{[ƒhƒRƒ“ƒgƒ[ƒ‰‚É‘—‚éƒf[ƒ^‚ª‚ ‚ê‚ÎA‘—‚é */
+			/* ï¿½Lï¿½[ï¿½{ï¿½[ï¿½hï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É‘ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½ï¿½ */
 			keycmd_wait = fifo32_get(&keycmd);
 			wait_KBC_sendready();
 			io_out8(PORT_KEYDAT, keycmd_wait);
 		}
 		io_cli();
 		if (fifo32_status(&fifo) == 0) {
-			/* FIFO‚ª‚©‚ç‚Á‚Û‚É‚È‚Á‚½‚Ì‚ÅA•Û—¯‚µ‚Ä‚¢‚é•`‰æ‚ª‚ ‚ê‚ÎŽÀs‚·‚é */
+			/* FIFOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û‚É‚È‚ï¿½ï¿½ï¿½ï¿½Ì‚ÅAï¿½Û—ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½`ï¿½æ‚ªï¿½ï¿½ï¿½ï¿½ÎŽï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ */
 			if (new_mx >= 0) {
 				io_sti();
 				sheet_slide(sht_mouse, new_mx, new_my);
@@ -907,16 +907,16 @@ void _main()
 		} else {
 			i = fifo32_get(&fifo);
 			io_sti();
-			if (key_win != 0 && key_win->flags == 0) {	/* ƒEƒBƒ“ƒhƒE‚ª•Â‚¶‚ç‚ê‚½ */
-				if (shtctl->top == 1) {	/* ‚à‚¤ƒ}ƒEƒX‚Æ”wŒi‚µ‚©‚È‚¢ */
+			if (key_win != 0 && key_win->flags == 0) {	/* ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ê‚½ */
+				if (shtctl->top == 1) {	/* ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½Eï¿½Xï¿½Æ”wï¿½iï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ */
 					key_win = 0;
 				} else {
 					key_win = shtctl->sheets[shtctl->top - 1];
 					keywin_on(key_win);
 				}
 			}
-			if (256 <= i && i <= 511) { /* ƒL[ƒ{[ƒhƒf[ƒ^ */
-				if (i < 0x80 + 256) { /* ƒL[ƒR[ƒh‚ð•¶ŽšƒR[ƒh‚É•ÏŠ· */
+			if (256 <= i && i <= 511) { /* ï¿½Lï¿½[ï¿½{ï¿½[ï¿½hï¿½fï¿½[ï¿½^ */
+				if (i < 0x80 + 256) { /* ï¿½Lï¿½[ï¿½Rï¿½[ï¿½hï¿½ð•¶Žï¿½ï¿½Rï¿½[ï¿½hï¿½É•ÏŠï¿½ */
 					if (key_shift == 0) {
 						s[0] = keytable0[i - 256];
 					} else {
@@ -925,13 +925,13 @@ void _main()
 				} else {
 					s[0] = 0;
 				}
-				if ('A' <= s[0] && s[0] <= 'Z') {	/* “ü—Í•¶Žš‚ªƒAƒ‹ƒtƒ@ƒxƒbƒg */
+				if ('A' <= s[0] && s[0] <= 'Z') {	/* ï¿½ï¿½ï¿½Í•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½tï¿½@ï¿½xï¿½bï¿½g */
 					if (((key_leds & 4) == 0 && key_shift == 0) ||
 							((key_leds & 4) != 0 && key_shift != 0)) {
-						s[0] += 0x20;	/* ‘å•¶Žš‚ð¬•¶Žš‚É•ÏŠ· */
+						s[0] += 0x20;	/* ï¿½å•¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É•ÏŠï¿½ */
 					}
 				}
-				if (s[0] != 0 && key_win != 0) { /* ’Êí•¶ŽšAƒoƒbƒNƒXƒy[ƒXAEnter */
+				if (s[0] != 0 && key_win != 0) { /* ï¿½Êí•¶ï¿½ï¿½ï¿½Aï¿½oï¿½bï¿½Nï¿½Xï¿½yï¿½[ï¿½Xï¿½AEnter */
 					fifo32_put(&key_win->task->fifo, s[0] + 256);
 				}
 				if (i == 256 + 0x0f && key_win != 0) {	/* Tab */
@@ -943,16 +943,16 @@ void _main()
 					key_win = shtctl->sheets[j];
 					keywin_on(key_win);
 				}
-				if (i == 256 + 0x2a) {	/* ¶ƒVƒtƒg ON */
+				if (i == 256 + 0x2a) {	/* ï¿½ï¿½ï¿½Vï¿½tï¿½g ON */
 					key_shift |= 1;
 				}
-				if (i == 256 + 0x36) {	/* ‰EƒVƒtƒg ON */
+				if (i == 256 + 0x36) {	/* ï¿½Eï¿½Vï¿½tï¿½g ON */
 					key_shift |= 2;
 				}
-				if (i == 256 + 0xaa) {	/* ¶ƒVƒtƒg OFF */
+				if (i == 256 + 0xaa) {	/* ï¿½ï¿½ï¿½Vï¿½tï¿½g OFF */
 					key_shift &= ~1;
 				}
-				if (i == 256 + 0xb6) {	/* ‰EƒVƒtƒg OFF */
+				if (i == 256 + 0xb6) {	/* ï¿½Eï¿½Vï¿½tï¿½g OFF */
 					key_shift &= ~2;
 				}
 				if (i == 256 + 0x3a) {	/* CapsLock */
@@ -1070,9 +1070,9 @@ void _main()
 							mmy = my;
 						}
 					} else {
-						mmx = -1;	/* ’Êíƒ‚[ƒh‚Ö */
+						mmx = -1;	/* ï¿½Êíƒ‚ï¿½[ï¿½hï¿½ï¿½ */
 						if (new_wx != 0x7fffffff) {
-							sheet_slide(sht, new_wx, new_wy);	/* ˆê“xŠm’è‚³‚¹‚é */
+							sheet_slide(sht, new_wx, new_wy);	/* ï¿½ï¿½xï¿½mï¿½è‚³ï¿½ï¿½ï¿½ï¿½ */
 							new_wx = 0x7fffffff;
 						}
 					}
@@ -1091,10 +1091,10 @@ void _main()
 				sheet_free(sht2);
 			}
 			/* -------------------------------------------------------------------------------------------------- */
-			//ÏÔÊ¾ÈÕÆÚ
+			//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 			sprintf(s, "DATE: %d-%d-%d", get_year(), get_mon_hex(), get_day_of_month());
 			putfonts8_asc_sht(sht_back, binfo->scrnx - 180, binfo->scrny -20, COL8_000000, COL8_C6C6C6, s, 15);
-			//ÏÔÊ¾Ê±¼ä
+			//ï¿½ï¿½Ê¾Ê±ï¿½ï¿½
 			sprintf(s, "%d:%d", get_hour_hex(), get_min_hex());
 			putfonts8_asc_sht(sht_back, binfo->scrnx - 45, binfo->scrny -20, COL8_000000, COL8_C6C6C6, s, 5);
 			sheet_refresh(sht_back, binfo->scrnx - 130, binfo->scrny -20,binfo->scrnx - 45 + 5*8, binfo->scrny -50+16);
@@ -1143,7 +1143,7 @@ struct TASK *open_constask(struct SHEET *sht, unsigned int memtotal)
 }
 
 /* ------------------------------
-´°¿Ú´óÐ¡µÄ¸ü¸Ä ---- Ö÷Òªº¯Êý
+ï¿½ï¿½ï¿½Ú´ï¿½Ð¡ï¿½Ä¸ï¿½ï¿½ï¿½ ---- ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 --------------------------------- */
 struct SHEET *open_console(struct SHTCTL *shtctl, unsigned int memtotal)
 {
@@ -1198,16 +1198,16 @@ struct SHEET *open_syncmon(struct SHTCTL *shtctl, unsigned int memtotal)
 	int *mon_fifo;
 	unsigned char *buf;
 
-	/* ÈÎÒ»¹Ø¼ü×ÊÔ´·ÖÅäÊ§°ÜÊ±Ö±½Ó·µ»Ø£¬±ÜÃâºóÐø¿ÕÖ¸?? */
+	/* ï¿½ï¿½Ò»ï¿½Ø¼ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½Ê±Ö±ï¿½Ó·ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸?? */
 	if (sht == 0 || task == 0)
 	{
 		return 0;
 	}
 
-	/* Ê×???´ò¿ª´°¿ÚÊ±Æô¶¯ÑÝÊ¾ÈÎÎñ£»ºóÐøÖØ???´ò¿ª??×ö¼à?? */
+	/* ï¿½ï¿½???ï¿½ò¿ª´ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ñ£»ºï¿½ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½?? */
 	syncdemo_start_once();
 
-	/* ¹¹Ôì¼àÊÓ´°¿ÚÍ¼²ãÓëÏÔÊ¾»º³å */
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ */
 	mon_fifo = (int *)memman_alloc_4k(memman, 525 * 4);
 	buf = (unsigned char *)memman_alloc_4k(memman, 520 * 280);
 	sheet_setbuf(sht, buf, 520, 280, -1);
@@ -1215,7 +1215,7 @@ struct SHEET *open_syncmon(struct SHTCTL *shtctl, unsigned int memtotal)
 	sheet_slide(sht, ((shtctl->xsize - 520) / 2) & ~3, (shtctl->ysize - 280) / 2);
 	sheet_updown(sht, shtctl->top);
 
-	/* °ó¶¨Ò»??×¨ÊôÄÚºËÈÎÎñÀ´ÖÜÆÚË¢ÐÂ???´°?? */
+	/* ï¿½ï¿½Ò»??×¨ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½???ï¿½ï¿½?? */
 	task->cons_stack = memman_alloc_4k(memman, 64 * 1024);
 	task->tss.esp = task->cons_stack + 64 * 1024 - 12;
 	task->tss.eip = (int)&task_syncmon;
@@ -1228,7 +1228,7 @@ struct SHEET *open_syncmon(struct SHTCTL *shtctl, unsigned int memtotal)
 	task->langmode = 0;
 	task->langbyte1 = 0;
 	*((int *)(task->tss.esp + 4)) = (int)sht;
-	/* ¼à???ÈÎÎñÍ¨¹ýFIFO½ÓÊÕ£º¶¨Ê±Ë¢ÐÂÓë¹Ø±ÕÊÂ¼þ */
+	/* ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½FIFOï¿½ï¿½ï¿½Õ£ï¿½ï¿½ï¿½Ê±Ë¢ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½Â¼ï¿½ */
 	fifo32_init(&task->fifo, 128, mon_fifo, task);
 	task_run(task, 1, 0);
 	sht->task = task;
